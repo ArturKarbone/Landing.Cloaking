@@ -1,0 +1,36 @@
+@model Landing.Cloacking.Models.Campaign
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Campaign</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WhiteLandingUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WhiteLandingUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BlackLandingUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BlackLandingUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CloackingUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CloackingUrl)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
