@@ -3,7 +3,7 @@ using System;
 
 namespace Landing.Cloaking.Firebase
 {
-    class FirebaseRepository
+    public class FirebaseRepository
     {
         public string Url => Environment.GetEnvironmentVariable("firebase-url");
 
