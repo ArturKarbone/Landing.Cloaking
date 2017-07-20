@@ -34,8 +34,7 @@ namespace Landing.Cloacking
         {
             services.AddScoped<CampaignRepository, CampaignRepository>();
 
-            services.AddScoped<Cloaker, Cloaker>();
-            services.AddScoped<BlackList, BlackList>();
+            services.AddScoped<Cloaker, Cloaker>();            
             services.AddScoped<BlackListRepository, BlackListRepository>();
             // Add framework services.
             services.AddMvc();

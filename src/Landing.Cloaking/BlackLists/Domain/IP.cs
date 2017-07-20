@@ -19,17 +19,5 @@ namespace Landing.Cloacking.Models
         }
         public string Address { get; set; }
     }
-
-    public class BlackList
-    {
-        protected List<IP> BlakckListedIPs = new List<IP>()
-        {
-            new IP("::1")
-        };
-
-        public bool Contains(IP address)
-        {
-            return BlakckListedIPs.Any(x => x.Equals(address));
-        }
-    }
+    
 }

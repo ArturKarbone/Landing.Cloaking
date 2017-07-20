@@ -1,63 +1,32 @@
 ﻿using Landing.Cloacking.Models;
+using Landing.Cloaking.Firebase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Landing.Cloacking.Campaigns
 {
-
-    public class CampaignRepository
+    public class CampaignRepository : FirebaseRepository
     {
-        public static List<Campaign> Campaigns { get; set; } = new List<Campaign> {
-            new Campaign
-            {
-                 Id = "test",
-                 BlackLandingUrl = "b1",
-                 CloackingUrl = "c1",
-                 WhiteLandingUrl = "w1"
-
-            },
-            new Campaign
-            {
-                 BlackLandingUrl = "b2",
-                 CloackingUrl = "c2",
-                 WhiteLandingUrl = "w2"
-            }
-        };
-
-
         public Campaign Get(string id)
         {
-            return Campaigns.First(x => x.Id == id);
-        }
-
-        public bool Exists(string id)
-        {
-            return Campaigns.Any(x => x.Id == id);
+            return Client.GetSync<Campaign>($"campaigns/{id}");
         }
 
         public void Delete(string id)
         {
-            Campaigns.Remove(Campaigns.First(x => x.Id == id));
+            throw new NotImplementedException();
         }
-
 
         public List<Campaign> All()
         {
-            return Campaigns.ToList();
+            var campaigns = Client.GetSync<Dictionary<string, Campaign>>("campaigns");
+            return campaigns?.Values?.ToList() ?? new List<Campaign>();
         }
 
         public void Save(Campaign campaign)
         {
-            var existingCampaign = Campaigns.FirstOrDefault(x => x.Id == campaign.Id);
-
-            if (null != existingCampaign)
-            {
-                existingCampaign = campaign;
-            }
-            else
-            {
-                Campaigns.Add(campaign);
-            }
+            Client.SetSync($"campaigns/{campaign.Id}", campaign);
         }
     }
 }

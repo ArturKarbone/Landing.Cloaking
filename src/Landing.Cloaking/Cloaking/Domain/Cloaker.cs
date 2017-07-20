@@ -1,4 +1,5 @@
-﻿using Landing.Cloacking.Campaigns;
+﻿using Landing.Cloacking.BlackLists.Repository;
+using Landing.Cloacking.Campaigns;
 using Landing.Cloacking.Models;
 using System;
 using System.Net;
@@ -10,12 +11,12 @@ namespace Landing.Cloacking.Cloaking
         #region Dependencies
 
         readonly CampaignRepository _repository;
-        readonly BlackList _blackList;
+        readonly BlackListRepository _blackListRepository;
 
-        public Cloaker(CampaignRepository repository, BlackList blackList)
+        public Cloaker(CampaignRepository repository, BlackListRepository blackListRepository)
         {
             _repository = repository;
-            _blackList = blackList;
+            _blackListRepository = blackListRepository;
         }
 
         #endregion
@@ -25,7 +26,7 @@ namespace Landing.Cloacking.Cloaking
             var campaign = _repository.Get(request.CampaignId);
             Uri landing;
 
-            if (_blackList.Contains(new IP(request.IP.ToString())))
+            if (_blackListRepository.Contains(new IP(request.IP.ToString())))
             {
                 landing = new Uri(campaign.BlackLandingUrl);
             }

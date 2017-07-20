@@ -93,21 +93,7 @@ namespace Landing.Cloacking.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _repository.Save(campaign);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_repository.Exists(campaign.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _repository.Save(campaign);
                 return RedirectToAction("Index");
             }
             return View(campaign);
