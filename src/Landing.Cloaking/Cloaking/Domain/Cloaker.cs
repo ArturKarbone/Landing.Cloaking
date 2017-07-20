@@ -3,6 +3,7 @@ using Landing.Cloacking.Campaigns;
 using Landing.Cloacking.Models;
 using System;
 using System.Net;
+using static Landing.Cloacking.Models.Campaign;
 
 namespace Landing.Cloacking.Cloaking
 {
@@ -25,6 +26,9 @@ namespace Landing.Cloacking.Cloaking
         {
             var campaign = _repository.Get(request.CampaignId);
             Uri landing;
+
+            campaign.LoggedIPs.Add(new IPEntry { Address = request.IP.ToString() });
+            _repository.Save(campaign);
 
             if (_blackListRepository.Contains(new IP(request.IP.ToString())))
             {
