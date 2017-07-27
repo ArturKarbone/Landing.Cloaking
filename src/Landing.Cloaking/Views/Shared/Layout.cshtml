@@ -26,12 +26,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Landing.Cloacking</a>
+                <a asp-area="" asp-controller="Campaigns" asp-action="Index" class="navbar-brand">Landing.Cloacking</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Campaigns">Campaigns</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="BlackList">Black List</a></li>                  
+                    <li><a asp-area="" asp-controller="Campaigns" asp-action="Index">Campaigns</a></li>
+                    <li><a asp-area="" asp-controller="BlackList" asp-action="Index">Black List</a></li>                  
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
