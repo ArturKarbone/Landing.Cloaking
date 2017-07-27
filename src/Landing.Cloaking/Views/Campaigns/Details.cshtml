@@ -31,6 +31,34 @@
     </dl>
 </div>
 <div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    IP
+                </th>
+                <th>
+                    Logged At
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LoggedIPs.OrderBy(x=>x.LoggedAt))
+            {
+                <tr>
+                    <td>
+                        @item.Address
+                    </td> 
+                    <td>
+                        @item.LoggedAt
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
